@@ -1,0 +1,48 @@
+README_Gene_Mapping_to_Depmap
+Fredrik Wermeling, PhD
+
+The script was developed and successfully executed using RStudio version 2024.12.0 Build 467 and R version 4.4.1, using the dplyr, readr, stringr, tidyr, and purrr R packages.
+
+Overview
+This R script takes a list of gene names and attempts to identify known synonyms as well as mouse/human orthologues. Next, the script filters these suggestions against a DepMap gene list, so that only matches present in DepMap are retained. This is particularly useful when working against the Depmap portal and its resources.
+
+How to use
+The script processes five input files. Save all files in a dedicated folder.
+
+Gene List:
+A plain text file listing gene names (one per line) for which you want to find synonyms and orthologues. For us this is typically a list of genes that are not matching to the Depmap
+
+MRK_List1.rpt
+A tab-delimited file containing gene synonyms from Jax.org. The script uses this to identify current marker symbols for genes.
+Download from: https://www.informatics.jax.org/downloads/reports/index.html
+Unzip and save into the dedicated folder.
+
+HMD_HumanPhenotype.rpt
+A tab-delimited file that maps mouse genes to their human orthologues.
+Download from: https://www.informatics.jax.org/downloads/reports/index.html
+Save it in the dedicated folder.
+
+human+mouse synonym.txt
+A text file containing additional synonyms for both mouse and human genes generated from Ensembl BioMart.
+Download from: https://github.com/EsbjornHenkel/Green-Listed-V2/blob/main/libraries/human%2Bmouse%20synonym.txt
+Save it in the dedicated folder.
+
+depmap all.txt
+A plain text file listing gene names present in the DepMap 24Q4 dataset. This file is used to filter the suggestions so that only those genes found in DepMap are output.
+(Provide your own file or download it from an appropriate DepMap resource, e.g., https://depmap.org/portal/). A version of this is also attached to the script repository. Save it in the dedicated folder.
+
+Output
+After processing, the script creates a new folder (named by the current date) within the same directory as your gene list file. This folder will contain two CSV files:
+
+Detailed Mapping (detailed_gene_mapping.csv)
+Lists each input gene along with its corresponding synonyms (from both MRK and human+mouse synonym sources) and mouse/human orthologues. Additional columns include:
+DepMap_Matches: The unique union of suggestions that are present in the DepMap gene set.
+Num_DepMap_Matches: The total number of unique DepMap matches found for that gene.
+
+Condensed Mapping (condensed_depmap_mapping.csv)
+A three-column file where each row contains the gene, one unique DepMap match, and the total number of unique matches (Num_Matches) for that gene. If no matches are found for a gene, the DepMap_Match cell is blank and Num_Matches is 0. This layout is convenient for copy-pasting or further analysis.
+
+The number of total unique matches can be used as a filtering to get an idea of which identified mappings to continue with. 2-4 is likely advisable as if there are more, you´ve likely identified a whole gene family suggested as an orthologue to your input gene. It´s likely not these types of mappings that you are looking for. 
+
+Version History
+250213: Initial release
