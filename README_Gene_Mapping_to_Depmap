@@ -29,7 +29,7 @@ Save it in the dedicated folder.
 
 depmap all.txt
 A plain text file listing gene names present in the DepMap 24Q4 dataset. This file is used to filter the suggestions so that only those genes found in DepMap are output.
-(Provide your own file or download it from an appropriate DepMap resource, e.g., https://depmap.org/portal/). A version of this is also attached to the script repository. Save it in the dedicated folder.
+(Provide your own file or download it from an appropriate DepMap resource, e.g., https://depmap.org/portal/). A version of this is also attached to the script repository. Save it in the dedicated folder. Note that this file could be any gene list that you want to map your list again. Other examples are also uploaded to the repository, eg the Brunello or Brie libraries. For flexibility you need to change which column the gene symbols are found. In Brie and Brunello they are in column 2, while in the depmap all its in column 1.
 
 Output
 After processing, the script creates a new folder (named by the current date) within the same directory as your gene list file. This folder will contain two CSV files:
